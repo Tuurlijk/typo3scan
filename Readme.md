@@ -114,6 +114,8 @@ If you want to help improve this tool to reduce the amount of false positives, i
 
 This tool is a wrapper around the [TYPO3 scanner library](https://github.com/ohader/scanner) that has been extracted from the TYPO3 v9 core. I added the v7 and v8 matcher rules to [a fork of this repository](https://github.com/Tuurlijk/scanner).
 
+Most of the time you will want to change the **typo3 scanner library** or your fork of it and then run that library inside the **typo3scan** tool.
+
 ### Set up the development environment
 Clone the TYPO3 scanner library repository (or your fork of the scanner repository):
 ```bash
