@@ -84,6 +84,12 @@ EOT
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $format = $input->getOption('format') ?: 'plain';
+        if (!$input->getOption('path')) {
+            $output->writeln('The <comment>--path</comment> option is required.');
+            $output->writeln('');
+            $output->writeln($this->getHelp());
+            return;
+        }
         $path = realpath($input->getOption('path'));
         $version = $input->getOption('target');
         if ($input->getOption('templatePath') && is_dir(realpath($input->getOption('templatePath')))) {
