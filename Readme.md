@@ -3,7 +3,7 @@ Scans code for usage of deprecated and or changed code.
 
 TYPO3 publishes [breaking changes and deprecations since version 7](https://docs.typo3.org/typo3cms/extensions/core/stable/Index.html).
 
-This tool scans a folder for any code that is broken or deprecated.
+This tool scans a folder for any code that is broken or deprecated. It's a wrapper around the [TYPO3 scanner library](https://github.com/ohader/scanner) that has been extracted from the TYPO3 v9 core.
 
 ## Requirements
 The scanner requires PHP 7.0 or higher to run.
@@ -109,5 +109,42 @@ Access to array key "formevals" (weak)
 Breaking: #67749 - Force class auto loading for various hooks
 https://docs.typo3.org/typo3cms/extensions/core/Changelog/7.4/Breaking-67749-ForceAutoloadingForVariousHooks.html
 ```
+## Contributing
+If you want to help improve this tool to reduce the amount of false positives, improve matchers, add new matchers etc., your contributions are very welcome!
+
+This tool is a wrapper around the [TYPO3 scanner library](https://github.com/ohader/scanner) that has been extracted from the TYPO3 v9 core. I added the v7 and v8 matcher rules to [a fork of this repository](https://github.com/Tuurlijk/scanner).
+
+### Set up the development environment
+Clone the TYPO3 scanner library repository (or your fork of the scanner repository):
+```bash
+git clone https://github.com/Tuurlijk/scanner.git
+```
+Clone this repository:
+```bash
+git clone https://github.com/Tuurlijk/typo3scan.git
+```
+Update composer.json `cms-scanner-local` repository so the path points to your *scanner library repository*.
+```json
+        "cms-scanner-local": {
+            "type": "path",
+            "url": "~/Projects/TYPO3/scanner/"
+        },
+```
+Run `composer update`. Composer will now **link** the local scanner library into the **typo3scan** project. So any changes to the scanner library will be directly reflected when executing typo3scan.
+
+### Run the TYPO3scan tool
+You can execute the typo3scan tool from the `bin` directory.
+```bash
+cd ~/path/to/typo3scan
+php ./bin/typo3scan.php --path ~/tmp/testExtension
+```
+
+### Make sure all the tests run for the scanner library
+```bash
+cd ~/path/to/scanner-library
+composer install
+./.Build/bin/phpunit tests/
+```
+
 ## Sponsors
 This project was generously sponsored by [Stichting Praktijkleren](https://www.stichtingpraktijkleren.nl/).
