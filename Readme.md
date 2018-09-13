@@ -16,10 +16,8 @@ Download the latest version from: https://github.com/Tuurlijk/typo3scan/releases
 ## Usage
 ### Scan a path
 Specify a path to scan.
-- long option: `--path`
-- short option: `-p`
 ```bash
-php ./typo3scan.phar scan --path ~/tmp/source
+php ./typo3scan.phar scan ~/tmp/source
 ```
 
 ### Scan for changes in certain TYPO3 version
@@ -28,7 +26,7 @@ By default the scanner scans for breaking changes and deprecations in the most r
 - short option: `-t`
 - values: `7`, `8` and `9`
 ```bash
-php ./typo3scan.phar scan --path ~/tmp/source --target 8
+php ./typo3scan.phar scan --target 8 ~/tmp/source
 ```
 
 ### Change output format
@@ -37,7 +35,7 @@ You can specify a different output format.
 - short option: `-f`
 - values: `markdown`
 ```bash
-php ./typo3scan.phar scan --path ~/tmp/source --format markdown
+php ./typo3scan.phar scan --format markdown ~/tmp/source
 ```
 
 ### Specify custom template folder
@@ -46,17 +44,17 @@ You can output in ANY format of your choosing by specifying a custom templatePat
 
 The scanner looks for a file with the name `Format.twig`. So if you create a HTML template and store that in `~/path/to/templates/Html.twig`, then you can generate a HTML report with the following command:
 ```bash
-php ./typo3scan.phar scan --path ~/tmp/source --format html --templatePath ~/path/to/templates
+php ./typo3scan.phar scan --format html --templatePath ~/path/to/templates ~/tmp/source
 ```
 If you want to output the report as Restructured Text, you would create a `Rst.twig` template and generate rest using:
 ```bash
-php ./typo3scan.phar scan --path ~/tmp/source --format rst --templatePath ~/path/to/templates
+php ./typo3scan.phar scan --format rst --templatePath ~/path/to/templates ~/tmp/source
 ```
 
 ### Capture output in a file
 You can redirect the output to a file
 ```bash
-php ./typo3scan.phar scan --path ~/tmp/source --format markdown > source.md
+php ./typo3scan.phar scan --format markdown  ~/tmp/source > source.md
 ```
 
 ### Loop over a list of extensions
@@ -64,7 +62,7 @@ If you have a list of extension keys you want to scan, you can do something like
 ```bash
 for e in `cat ~/extensions.txt`;
 do
-    php ./typo3scan.phar scan --path ~/tmp/ext/$e --format markdown > ~/tmp/reports/$e.md;
+    php ./typo3scan.phar scan --format markdown  ~/tmp/ext/$e > ~/tmp/reports/$e.md;
 done
 ```
 
@@ -72,7 +70,7 @@ You can find example templates in the [Resources/Private/Templates](./src/Resour
 ## Example output
 A part of the plain output for:
 ```bash
-typo3scan.phar scan --path ~/tmp/source/powermail
+typo3scan.phar scan ~/tmp/source/powermail
 ```
 Looks like this:
 ```
@@ -140,7 +138,7 @@ Run `composer update`. Composer will now **link** the local scanner library into
 You can execute the typo3scan tool from the `bin` directory.
 ```bash
 cd ~/path/to/typo3scan
-php ./bin/typo3scan.php --path ~/tmp/testExtension
+php ./bin/typo3scan.php ~/tmp/testExtension
 ```
 
 ### Make sure all the tests run for the scanner library
