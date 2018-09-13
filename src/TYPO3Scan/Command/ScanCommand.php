@@ -25,6 +25,7 @@ namespace MichielRoos\TYPO3Scan\Command;
 
 use MichielRoos\TYPO3Scan\Service\ScannerService;
 use Symfony\Component\Console\Command\Command;
+use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -47,7 +48,7 @@ class ScanCommand extends Command
             ->setName('scan')
             ->setDescription('Scan a path for deprecated code')
             ->setDefinition([
-                new InputOption('path', 'p', InputOption::VALUE_REQUIRED, 'Path to scan'),
+                new InputArgument('path', InputArgument::REQUIRED, 'Path to scan'),
                 new InputOption('target', 't', InputOption::VALUE_OPTIONAL, 'TYPO3 version to target', '9'),
                 new InputOption('format', 'f', InputOption::VALUE_OPTIONAL, 'Output format', 'plain'),
                 new InputOption('templatePath', null, InputOption::VALUE_OPTIONAL, 'Path to template folder'),
@@ -56,16 +57,16 @@ class ScanCommand extends Command
 The <info>scan</info> command scans a path for deprectated code</info>.
 
 Scan a folder:
-<info>php typo3scan.phar scan --path ~/tmp/source</info>
+<info>php typo3scan.phar scan ~/tmp/source</info>
 
 Scan a folder for v8 changes:
-<info>php typo3scan.phar scan --path ~/tmp/source --target 8</info>
+<info>php typo3scan.phar scan --target 8 ~/tmp/source</info>
 
 Scan a folder for v7 changes and output in markdown:
-<info>php typo3scan.phar scan --path ~/tmp/source --target 7 --format markdown</info>
+<info>php typo3scan.phar scan --target 7 --format markdown ~/tmp/source</info>
 
 Scan a folder for v9 changes and output in markdown with custom template:
-<info>php typo3scan.phar scan --path ~/tmp/source --format markdown --templatePath ~/path/to/templates</info>
+<info>php typo3scan.phar scan --format markdown --templatePath ~/path/to/templates --path ~/tmp/source</info>
 EOT
             );
     }
@@ -84,13 +85,7 @@ EOT
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $format = $input->getOption('format') ?: 'plain';
-        if (!$input->getOption('path')) {
-            $output->writeln('The <comment>--path</comment> option is required.');
-            $output->writeln('');
-            $output->writeln($this->getHelp());
-            return;
-        }
-        $path = realpath($input->getOption('path'));
+        $path = realpath($input->getArgument('path'));
         $version = $input->getOption('target');
         if ($input->getOption('templatePath') && is_dir(realpath($input->getOption('templatePath')))) {
             $templatePaths[] = realpath($input->getOption('templatePath'));
