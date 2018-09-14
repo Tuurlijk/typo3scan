@@ -18,8 +18,8 @@
         "twig/twig": "^2.5"
     },
     "repositories": {
-        "cms-scanner": {
-            "type": "vcs",
+        "typo3/cms-scanner": {
+            "type": "git",
             "url": "https://github.com/Tuurlijk/scanner.git"
         }
     },

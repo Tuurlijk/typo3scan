@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "5ce8da07455bcff976f0c4c9f1f90894",
+    "content-hash": "6fd087fba3f735631c548cbd5ec36bc3",
     "packages": [
         {
             "name": "nikic/php-parser",
@@ -474,12 +474,6 @@
                 "url": "https://github.com/Tuurlijk/scanner.git",
                 "reference": "11adfd732adc7b1f6886411702f976d624dc9bb6"
             },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/Tuurlijk/scanner/zipball/11adfd732adc7b1f6886411702f976d624dc9bb6",
-                "reference": "11adfd732adc7b1f6886411702f976d624dc9bb6",
-                "shasum": ""
-            },
             "require": {
                 "nikic/php-parser": "^4.0",
                 "symfony/finder": "^3.3 || ^4.1"
@@ -508,9 +502,6 @@
                 }
             ],
             "description": "TYPO3 CMS static file analysis",
-            "support": {
-                "source": "https://github.com/Tuurlijk/scanner/tree/master"
-            },
             "time": "2018-09-11T09:55:02+00:00"
         }
     ],
@@ -999,20 +990,23 @@
         },
         {
             "name": "phpunit/php-file-iterator",
-            "version": "2.0.1",
+            "version": "2.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/php-file-iterator.git",
-                "reference": "cecbc684605bb0cc288828eb5d65d93d5c676d3c"
+                "reference": "050bedf145a257b1ff02746c31894800e5122946"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/php-file-iterator/zipball/cecbc684605bb0cc288828eb5d65d93d5c676d3c",
-                "reference": "cecbc684605bb0cc288828eb5d65d93d5c676d3c",
+                "url": "https://api.github.com/repos/sebastianbergmann/php-file-iterator/zipball/050bedf145a257b1ff02746c31894800e5122946",
+                "reference": "050bedf145a257b1ff02746c31894800e5122946",
                 "shasum": ""
             },
             "require": {
                 "php": "^7.1"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^7.1"
             },
             "type": "library",
             "extra": {
@@ -1042,7 +1036,7 @@
                 "filesystem",
                 "iterator"
             ],
-            "time": "2018-06-11T11:44:00+00:00"
+            "time": "2018-09-13T20:33:42+00:00"
         },
         {
             "name": "phpunit/php-text-template",
