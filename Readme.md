@@ -125,7 +125,7 @@ Clone this repository:
 ```bash
 git clone https://github.com/Tuurlijk/typo3scan.git
 ```
-Update composer.json `cms-scanner-local` repository so the path points to your *scanner library repository*.
+Add a repository entry to your `composer.json` pointing to your locally cloned *scanner library repository*. Put this one as the first one in the list.
 ```json
         "cms-scanner-local": {
             "type": "path",
