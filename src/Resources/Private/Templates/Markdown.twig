@@ -1,6 +1,7 @@
 #{{ title }}
 
-Found {{ total }} matches
+Found **{{ total }}** matches in **{{ executionTime|number_format(2) }}s** when
+checking for changes and deprecations in **TYPO3 {{ targetVersion }}**
 
 {% for key in statistics|keys %} {{ key }} | {% endfor %}
 
