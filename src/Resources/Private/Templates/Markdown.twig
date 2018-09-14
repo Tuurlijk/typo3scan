@@ -9,7 +9,6 @@ Found {{ total }} matches
 {% for key, percentage in statistics %} {{ percentage }} | {% endfor %}
 
 {% for fileMatches in directoryMatches %}
-{% for fileMatches in directoryMatches %}
 ## {{ fileMatches.getPath|replace({ (basePath): ""}) }}
 {% for fileMatch in fileMatches %}
 ### {{ fileMatch.getMessage|raw }} *({{ fileMatch.getIndicator }})*
@@ -19,6 +18,5 @@ Found {{ total }} matches
 - [{{ restFile|getChangeTitle|raw }}]({{ restFile|getOnlineDocument }})
 {% endfor %}
 
-{% endfor %}
 {% endfor %}
 {% endfor %}

@@ -8,7 +8,6 @@ Found <comment>{{ total }}</comment> matches
 
 
 {% for fileMatches in directoryMatches %}
-{% for fileMatches in directoryMatches %}
 <info>{{ fileMatches.getPath|replace({ (basePath): ""}) }}</info>
 {% for fileMatch in fileMatches %}
 {{ fileMatch.getMessage|raw }} <comment>({{ fileMatch.getIndicator }})</comment>
@@ -18,6 +17,5 @@ Found <comment>{{ total }}</comment> matches
 {{ restFile|getOnlineDocument }}
 {% endfor %}
 
-{% endfor %}
 {% endfor %}
 {% endfor %}
