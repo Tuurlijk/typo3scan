@@ -18,10 +18,6 @@
         "twig/twig": "^2.5"
     },
     "repositories": {
-        "cms-scanner-local": {
-            "type": "path",
-            "url": "~/Projects/TYPO3/scanner/"
-        },
         "cms-scanner": {
             "type": "vcs",
             "url": "https://github.com/Tuurlijk/scanner.git"
