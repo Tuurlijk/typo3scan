@@ -33,7 +33,7 @@ php ./typo3scan.phar scan --target 8 ~/tmp/source
 You can specify a different output format.
 - long option: `--format`
 - short option: `-f`
-- values: `markdown`
+- values: `html`, `markdown`, `plain`
 ```bash
 php ./typo3scan.phar scan --format markdown ~/tmp/source
 ```
@@ -68,6 +68,7 @@ done
 
 You can find example templates in the [Resources/Private/Templates](./src/Resources/Private/Templates) folder.
 ## Example output
+### Plain
 A part of the plain output for:
 ```bash
 typo3scan.phar scan ~/tmp/source/powermail
@@ -76,7 +77,7 @@ Looks like this:
 ```
 powermail
 
-Found 17 matches
+Found 26 matches in 1.09s when checking for changes and deprecations in TYPO3 7
 
 strong	weak	DEPRECATION	BREAKING	
 29.41%	70.59%	5.88%	94.12%	
@@ -109,6 +110,13 @@ Access to array key "formevals" (weak)
 Breaking: #67749 - Force class auto loading for various hooks
 https://docs.typo3.org/typo3cms/extensions/core/Changelog/7.4/Breaking-67749-ForceAutoloadingForVariousHooks.html
 ```
+### Plain
+A part of the html output for:
+```bash
+typo3scan.phar scan ~/tmp/source/coreapi -f html -t 7
+```
+Looks like this:
+![](./Documentation/Screenshots/Html.png)
 ## Contributing
 If you want to help improve this tool to reduce the amount of false positives, improve matchers, add new matchers etc., your contributions are very welcome!
 

@@ -27,6 +27,6 @@ require_once __DIR__ . '/../vendor/autoload.php';
 
 use MichielRoos\TYPO3Scan\Command\Application;
 
-$app = new Application('TYPO3Scan', '1.2.0');
+$app = new Application('TYPO3Scan', '1.3.0');
 $app->add(new \MichielRoos\TYPO3Scan\Command\ScanCommand);
 $app->run();

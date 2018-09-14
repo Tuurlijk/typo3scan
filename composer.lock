@@ -453,8 +453,7 @@
                     "email": "armin.ronacher@active-4.com",
                     "role": "Project Founder"
                 },
-                {
-                    "name": "Twig Team",
+                {"name": "Twig Team",
                     "homepage": "https://twig.symfony.com/contributors",
                     "role": "Contributors"
                 }

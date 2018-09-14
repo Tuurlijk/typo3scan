@@ -324,7 +324,7 @@ EOT
         static $restFiles = [];
         if (empty($restFiles)) {
             $restFinder = new Finder();
-            $restFilesList = $restFinder->files()->in(__DIR__ . '/../../../doc/Changelog')->name('*.rst');
+            $restFilesList = $restFinder->files()->in(__DIR__ . '/../../Resources/Private/Changelog')->name('*.rst');
             /** @var \SplFileInfo $restFile */
             foreach ($restFilesList as $restFile) {
                 $restFiles[basename($restFile->getPathname())] = $restFile->getPathname();
@@ -395,7 +395,7 @@ EOT
         }
         $onlineDocument = '';
         $base = 'https://docs.typo3.org/typo3cms/extensions/core/';
-        $links = file(__DIR__ . '/../../../doc/links.txt');
+        $links = file(__DIR__ . '/../../Resources/Private/links.txt');
         $filename = basename($path);
         $filename = str_replace('.rst', '.html', $filename);
         foreach ($links as $link) {
