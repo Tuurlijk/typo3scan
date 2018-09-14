@@ -127,10 +127,10 @@ git clone https://github.com/Tuurlijk/typo3scan.git
 ```
 Add a repository entry to your `composer.json` pointing to your locally cloned *scanner library repository*. Put this one as the first one in the list.
 ```json
-        "cms-scanner-local": {
+        [
             "type": "path",
             "url": "~/Projects/TYPO3/scanner/"
-        },
+        ],
 ```
 Run `composer update`. Composer will now **link** the local scanner library into the **typo3scan** project. So any changes to the scanner library will be directly reflected when executing typo3scan.
 

@@ -17,12 +17,12 @@
         "symfony/console": "^4.1",
         "twig/twig": "^2.5"
     },
-    "repositories": {
-        "typo3/cms-scanner": {
-            "type": "git",
-            "url": "https://github.com/Tuurlijk/scanner.git"
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/Tuurlijk/scanner"
         }
-    },
+    ],
     "autoload": {
         "psr-4": {
             "MichielRoos\\TYPO3Scan\\": "src/TYPO3Scan"
