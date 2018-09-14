@@ -116,6 +116,7 @@ A part of the html output for:
 typo3scan.phar scan ~/tmp/source/coreapi -f html -t 7
 ```
 Looks like this:
+
 ![](./Documentation/Screenshots/Html.png)
 ## Contributing
 If you want to help improve this tool to reduce the amount of false positives, improve matchers, add new matchers etc., your contributions are very welcome!
