@@ -28,6 +28,7 @@ use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
+use Symfony\Component\Console\Output\ConsoleOutputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Finder\Finder;
 use TYPO3\CMS\Scanner\Domain\Model\Match;
@@ -84,8 +85,19 @@ EOT
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
+        $stdErr = $output;
+        if ($output instanceof ConsoleOutputInterface) {
+            $stdErr = $output->getErrorOutput();
+        }
+
+        $startTime = microtime(true);
         $format = $input->getOption('format') ?: 'plain';
         $path = realpath($input->getArgument('path'));
+        if (!is_dir($path)) {
+            $stdErr->writeln(sprintf('Path does not exist: "%s"', $path));
+            exit;
+        }
+
         $version = $input->getOption('target');
         if ($input->getOption('templatePath') && is_dir(realpath($input->getOption('templatePath')))) {
             $templatePaths[] = realpath($input->getOption('templatePath'));
@@ -104,9 +116,7 @@ EOT
         $directoryMatches = $scanner->scan($path);
         $total = $directoryMatches->countAll();
 
-        if ($total === 0) {
-            return;
-        }
+        $executionTime = microtime(true) - $startTime;
 
         $percentagesByType = $this->getPercentagesByType($this->getCountsByType($directoryMatches), $total);
 
@@ -119,10 +129,12 @@ EOT
 
         $context = [
             'title' => $extension ?: $path,
+            'targetVersion' => $version,
             'total' => $total,
             'basePath' => $basePath,
             'statistics' => $percentagesByType,
-            'directoryMatches' => $directoryMatches
+            'directoryMatches' => $directoryMatches,
+            'executionTime' => $executionTime
         ];
 
         $template = $twig->load(ucfirst($format) . '.twig');
@@ -286,7 +298,11 @@ EOT
     {
         $result = [];
         foreach ($counts as $type => $count) {
-            $result[$type] = number_format(100 * $count / $total, 2) . '%';
+            if ($total <= 0) {
+                $result[$type] = 0;
+            } else {
+                $result[$type] = number_format(100 * $count / $total, 1) . '%';
+            }
         }
         return $result;
     }
