@@ -1,7 +1,6 @@
 <info>{{ title }}</info>
 
-Found <comment>{{ total }}</comment> matches in <comment>{{ executionTime|number_format(2) }}s</comment> when
-checking for changes and deprecations in <comment>TYPO3 {{ targetVersion }}</comment>
+Found <comment>{{ total }}</comment> matches in <comment>{{ executionTime|number_format(2) }}s</comment> when checking for changes and deprecations in <comment>TYPO3 {{ targetVersion }}</comment>
 
 {% for key in statistics|keys %}{{ key }}	{% endfor %}
 
