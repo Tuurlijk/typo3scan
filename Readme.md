@@ -110,7 +110,7 @@ Access to array key "formevals" (weak)
 Breaking: #67749 - Force class auto loading for various hooks
 https://docs.typo3.org/typo3cms/extensions/core/Changelog/7.4/Breaking-67749-ForceAutoloadingForVariousHooks.html
 ```
-### Plain
+### HTML
 A part of the html output for:
 ```bash
 typo3scan.phar scan ~/tmp/source/coreapi -f html -t 7
