@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "6fd087fba3f735631c548cbd5ec36bc3",
+    "content-hash": "775e31d241522b7aacbe46c8a4e0463d",
     "packages": [
         {
             "name": "nikic/php-parser",
@@ -474,6 +474,12 @@
                 "url": "https://github.com/Tuurlijk/scanner.git",
                 "reference": "11adfd732adc7b1f6886411702f976d624dc9bb6"
             },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Tuurlijk/scanner/zipball/11adfd732adc7b1f6886411702f976d624dc9bb6",
+                "reference": "11adfd732adc7b1f6886411702f976d624dc9bb6",
+                "shasum": ""
+            },
             "require": {
                 "nikic/php-parser": "^4.0",
                 "symfony/finder": "^3.3 || ^4.1"
@@ -502,6 +508,9 @@
                 }
             ],
             "description": "TYPO3 CMS static file analysis",
+            "support": {
+                "source": "https://github.com/Tuurlijk/scanner/tree/master"
+            },
             "time": "2018-09-11T09:55:02+00:00"
         }
     ],
