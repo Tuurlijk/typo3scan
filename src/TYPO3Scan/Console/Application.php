@@ -35,7 +35,7 @@ class Application extends BaseApplication
      *
      * @var string
      */
-    private static $logo = '   ________  ______  ____ _____
+    private static $logo = "   ________  ______  ____ _____
   /_  __/\ \/ / __ \/ __ \__  /   ______________ _____
    / /    \  / /_/ / / / //_ <   / ___/ ___/ __ `/ __ \
   / /     / / ____/ /_/ /__/ /  (__  ) /__/ /_/ / / / /
@@ -43,15 +43,28 @@ class Application extends BaseApplication
 
         https://github.com/tuurlijk/typo3scan
 
-          Hand coded with ♥️ by Michiel Roos 
+          Hand coded with %s️ by Michiel Roos 
 
-';
+";
 
     /**
      * @return string
      */
     public function getHelp()
     {
-        return self::$logo . parent::getHelp();
+        $love = $this->isColorSupported() ? "\e[31m♥\e[0m" : "♥";
+        return sprintf(self::$logo, $love) . parent::getHelp();
+    }
+
+    /**
+     * Check if color output is supported
+     * @return bool
+     */
+    private function isColorSupported()
+    {
+        if (DIRECTORY_SEPARATOR === '\\') {
+            return getenv('ANSICON') !== false || getenv('ConEmuANSI') === 'ON';
+        }
+        return \function_exists('posix_isatty') && @posix_isatty(STDOUT);
     }
 }
