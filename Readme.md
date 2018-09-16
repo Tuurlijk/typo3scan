@@ -8,7 +8,9 @@ TYPO3 publishes [breaking changes and deprecations since version 7](https://docs
 This tool scans a folder for any code that is broken or deprecated. It's a wrapper around the [TYPO3 scanner library](https://github.com/ohader/scanner) that has been extracted from the TYPO3 v9 core. You can scan for deprecations and breaking changes for v7, v8 and v9.
 
 ## Requirements
-The scanner requires PHP 7.0 or higher to run.
+The scanner requires **PHP 7.1** or higher to run. Why? *Because this tool was written in 2018!* Still running that old site on PHP 5.6? Move your extensions over to a system with PHP 7.1+ to scan them.
+
+If there is enough demand I can downgrade components of the scanner so it can also run on PHP 5.6. This would also mean that the TYPO3 scanner library will need to be adjusted. It is taken from the TYPO3 9 core which requires PHP 7.2 at the time of writing. This sounds like quite a hassle to me, so if you want to run the LTS version of TYPO3 . . . ugrading your PHP version is the preferred practice.
 
 ## Installation
 Download the latest version from: https://github.com/Tuurlijk/typo3scan/releases
