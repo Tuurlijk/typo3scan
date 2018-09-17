@@ -15,6 +15,14 @@ If there is enough demand I can downgrade components of the scanner so it can al
 ## Installation
 Download the latest version from: https://github.com/Tuurlijk/typo3scan/releases
 
+Or install using composer (skip the init step if you're installing it into an existing project):
+```bash
+composer init
+composer config minimum-stability dev
+composer config repositories.tuurlijk-scanner vcs https://github.com/Tuurlijk/scanner
+composer require --update-no-dev  "michielroos/typo3scan:*"
+```
+
 ## Usage
 ### Scan a path
 Specify a path to scan.
