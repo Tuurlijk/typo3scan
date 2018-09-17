@@ -27,6 +27,6 @@
   ],
   "git-commit-short": "package_version",
   "git-version": "package_branch_alias_version",
-  "main": "./bin/typo3scan.php",
+  "main": "./bin/typo3scan",
   "output": "typo3scan.phar"
 }

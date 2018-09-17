@@ -28,6 +28,7 @@
             "MichielRoos\\TYPO3Scan\\": "src/TYPO3Scan"
         }
     },
+    "bin": ["bin/typo3scan"],
     "config": {
         "bin-dir": "bin",
         "optimize-autoloader": true,

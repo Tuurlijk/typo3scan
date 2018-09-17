@@ -149,7 +149,7 @@ Run `composer update`. Composer will now **link** the local scanner library into
 You can execute the typo3scan tool from the `bin` directory.
 ```bash
 cd ~/path/to/typo3scan
-php ./bin/typo3scan.php ~/tmp/testExtension
+./bin/typo3scan scan ~/tmp/testExtension
 ```
 
 ### Make sure all the tests run for the scanner library
