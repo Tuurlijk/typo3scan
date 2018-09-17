@@ -34,6 +34,11 @@ use TYPO3\CMS\Scanner\ScannerFactory;
 class ScannerService
 {
     /**
+     * @var string
+     */
+	private static $matcherBundleBasePath = __DIR__ . '/../../../vendor/typo3/cms-scanner/config/Matcher/';
+
+    /**
      * @var MatcherBundleCollection
      */
     private $collection;
@@ -52,7 +57,7 @@ class ScannerService
             case '9':
                 $this->collection = new MatcherBundleCollection(
                     new \TYPO3\CMS\Scanner\Domain\Model\MatcherBundle(
-                        __DIR__ . '/../../../vendor/typo3/cms-scanner/config/Matcher/v9',
+                        self::$matcherBundleBasePath . 'v9',
                         '',
 
                         Matcher\ArrayDimensionMatcher::class,
@@ -79,7 +84,7 @@ class ScannerService
             case '8':
                 $this->collection = new MatcherBundleCollection(
                     new \TYPO3\CMS\Scanner\Domain\Model\MatcherBundle(
-                        __DIR__ . '/../../../vendor/typo3/cms-scanner/config/Matcher/v8',
+                        self::$matcherBundleBasePath . 'v8',
                         '',
 
                         Matcher\ArrayDimensionMatcher::class,
@@ -100,7 +105,7 @@ class ScannerService
             default:
                 $this->collection = new MatcherBundleCollection(
                     new \TYPO3\CMS\Scanner\Domain\Model\MatcherBundle(
-                        __DIR__ . '/../../../vendor/typo3/cms-scanner/config/Matcher/v7',
+                        self::$matcherBundleBasePath . 'v7',
                         '',
 
                         Matcher\ArrayMatcher::class,

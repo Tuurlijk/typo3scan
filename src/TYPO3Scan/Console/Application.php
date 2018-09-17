@@ -1,5 +1,5 @@
 <?php
-namespace MichielRoos\TYPO3Scan\Command;
+namespace MichielRoos\TYPO3Scan\Console;
 
 /**
  * Copyright (c) 2018 Michiel Roos
@@ -27,7 +27,7 @@ use Symfony\Component\Console\Application as BaseApplication;
 
 /**
  * Class Application
- * @package MichielRoos\TYPO3Scan\Command
+ * @package MichielRoos\TYPO3Scan\Console
  */
 class Application extends BaseApplication
 {
