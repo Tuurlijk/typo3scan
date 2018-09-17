@@ -36,7 +36,7 @@ class ScannerService
     /**
      * @var string
      */
-	private static $matcherBundleBasePath = __DIR__ . '/../../../vendor/typo3/cms-scanner/config/Matcher/';
+    private static $matcherBundleBasePath = '';
 
     /**
      * @var MatcherBundleCollection
@@ -53,6 +53,8 @@ class ScannerService
      */
     public function __construct($version)
     {
+        $this->setMatcherBundlePath();
+
         switch ($version) {
             case '9':
                 $this->collection = new MatcherBundleCollection(
@@ -138,5 +140,19 @@ class ScannerService
             $this->collection
         );
         return $result;
+    }
+
+    /**
+     * Find the matcher bundles, either inside of the phar file,
+     * or from the upper dir in case we are installed via composer
+     */
+    private function setMatcherBundlePath()
+    {
+        foreach ([__DIR__ . '/../../../vendor/typo3/cms-scanner/config/Matcher/', __DIR__ . '/../../../../../typo3/cms-scanner/config/Matcher/'] as $file) {
+            if (file_exists($file)) {
+                require_once $file;
+                break;
+            }
+        }
     }
 }
