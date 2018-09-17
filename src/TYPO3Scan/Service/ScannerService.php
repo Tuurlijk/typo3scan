@@ -149,8 +149,8 @@ class ScannerService
     private function setMatcherBundlePath()
     {
         foreach ([__DIR__ . '/../../../vendor/typo3/cms-scanner/config/Matcher/', __DIR__ . '/../../../../../typo3/cms-scanner/config/Matcher/'] as $file) {
-            if (file_exists($file)) {
-                require_once $file;
+            if (is_dir($file)) {
+                $this::$matcherBundleBasePath = $file;
                 break;
             }
         }
