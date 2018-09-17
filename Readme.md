@@ -166,3 +166,5 @@ This project was generously sponsored by [Stichting Praktijkleren](https://www.s
 Do you like this tool and want me to keep making quallity hand-crafted code?
 - Become a patreon on [Patreon](https://www.patreon.com/michielroos)
 - Make a donation via [PayPal](https://paypal.me/MichielRoos)
+
+Thank you! ♥
