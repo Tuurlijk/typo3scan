@@ -1,7 +1,7 @@
 # TYPO3 scanner
 Scans code for usage of deprecated and or changed code.
 
-![](./Documentation/Screenshots/Screenshot.png)
+[![demo](https://asciinema.org/a/201851.png)](https://asciinema.org/a/201851?autoplay=1)
 
 TYPO3 publishes [breaking changes and deprecations since version 7](https://docs.typo3.org/typo3cms/extensions/core/stable/Index.html).
 
