@@ -7,6 +7,13 @@ TYPO3 publishes [breaking changes and deprecations since version 7](https://docs
 
 This tool scans a folder for any code that is broken or deprecated. It's a wrapper around the [TYPO3 scanner library](https://github.com/ohader/scanner) that has been extracted from the TYPO3 v9 core. You can scan for deprecations and breaking changes for v7, v8 and v9.
 
+## Is TYPO3 scan helping you to migrate your TYPO3 site more smoothly?
+Then please consider a sponsorship so I can make this tool even more awesome!
+- Become a patreon on [Patreon](https://www.patreon.com/michielroos)
+- Make a donation via [PayPal](https://paypal.me/MichielRoos)
+
+Thank you! ♥
+
 ## Requirements
 The scanner requires **PHP 7.1** or higher to run. Why? *Because this tool was written in 2018!* Still running that old site on PHP 5.6? Move your extensions over to a system with PHP 7.1+ to scan them.
 
@@ -169,10 +176,3 @@ composer install
 
 ## Sponsors
 This project was generously sponsored by [Stichting Praktijkleren](https://www.stichtingpraktijkleren.nl/).
-
-## Say Thanks
-Do you like this tool and want me to keep making quallity hand-crafted code?
-- Become a patreon on [Patreon](https://www.patreon.com/michielroos)
-- Make a donation via [PayPal](https://paypal.me/MichielRoos)
-
-Thank you! ♥
