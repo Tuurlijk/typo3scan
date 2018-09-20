@@ -167,6 +167,36 @@ cd ~/path/to/typo3scan
 ./bin/typo3scan scan ~/tmp/testExtension
 ```
 
+### Run the TYPO3scan tool from within Gitlab CI
+
+Check multiple extensions in the folder `web/typo3conf/ext/` adjust that path if needed.
+
+The result is an artifact which contains a `Build/Report/Deprecations` where you have a file per extension and TYPO3 Version 7, 8 and 9.
+
+This way you can easily review each extension.
+
+With the planned junit ouput this can be nicely integrated into the gitlab merge request widget as well.
+
+```
+checkDeprecations:
+  image: docker.kay-strobach.de/docker/php:7.1
+  stage: test
+  variables:
+    SCANNER_RELEASE: "https://github.com/Tuurlijk/typo3scan/releases/download/1.3.0/typo3scan.phar"
+  script:
+    - curl -L $SCANNER_RELEASE --output typo3scan.phar
+    - php ./typo3scan.phar
+    - mkdir -p Build/Report/Deprecations
+    - for d in web/typo3conf/ext/*/ ; do (php ./typo3scan.phar scan --target 7 --format markdown $d > Build/Report/Deprecations/v7-$(basename $d).md); done
+    - for d in web/typo3conf/ext/*/ ; do (php ./typo3scan.phar scan --target 8 --format markdown $d > Build/Report/Deprecations/v8-$(basename $d).md); done
+    - for d in web/typo3conf/ext/*/ ; do (php ./typo3scan.phar scan --target 9 --format markdown $d > Build/Report/Deprecations/v9-$(basename $d).md); done
+  artifacts:
+    when: on_success
+    expire_in: 7 days
+    paths:
+    - Build
+```
+
 ### Make sure all the tests run for the scanner library
 ```bash
 cd ~/path/to/scanner-library
