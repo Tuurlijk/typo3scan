@@ -123,6 +123,7 @@ EOT
         $loader = new \Twig_Loader_Filesystem($templatePaths);
         $twig = new \Twig_Environment($loader);
         $twig->addFilter($this->getChangeTitle());
+        $twig->addFilter($this->getEscapeDollarFilter());
         $twig->addFilter($this->getLineFromFileFilter());
         $twig->addFilter($this->getFilenameFilter());
         $twig->addFilter($this->getOnlineDocumentFilter());
@@ -162,6 +163,18 @@ EOT
     {
         return new \Twig_Filter('getFilename', function ($path) {
             return pathinfo($path, PATHINFO_FILENAME);
+        });
+    }
+
+    /**
+     * TWIG filter for escaping the dollar character
+     *
+     * @return \Twig_Filter
+     */
+    protected function getEscapeDollarFilter(): \Twig_Filter
+    {
+        return new \Twig_Filter('escapeDollar', function ($string) {
+            return str_replace('$', '\$', $string);
         });
     }
 

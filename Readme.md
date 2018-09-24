@@ -50,7 +50,7 @@ php ./typo3scan.phar scan --target 8 ~/tmp/source
 You can specify a different output format.
 - long option: `--format`
 - short option: `-f`
-- values: `html`, `markdown`, `plain`
+- values: `html`, `junit`, `markdown`, `plain`
 ```bash
 php ./typo3scan.phar scan --format markdown ~/tmp/source
 ```
@@ -165,6 +165,14 @@ typo3scan.phar scan ~/tmp/source/coreapi -f html -t 7
 Looks like this:
 
 ![](./Documentation/Screenshots/Html.png)
+### Junit
+A part of the junit output for:
+```bash
+typo3scan.phar scan ~/tmp/source/coreapi -f junit -t 7
+```
+Looks like this:
+
+![](./Documentation/Screenshots/Junit.png)
 ## Contributing
 If you want to help improve this tool to reduce the amount of false positives, improve matchers, add new matchers etc., your contributions are very welcome!
 

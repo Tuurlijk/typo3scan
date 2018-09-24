@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites name="{{ title }}" tests="{{ total }}" errors="{{ total }}" time="{{ executionTime }}">
+{% for fileMatches in directoryMatches %}
+<testsuite name="{{ fileMatches.getPath|replace({ (basePath): ""}) }}" tests="{{ fileMatches.count }}" errors="{{ fileMatches.count }}">
+{% for fileMatch in fileMatches %}
+    <testcase name="{{ fileMatch.getMessage|escapeDollar }} ({{ fileMatch.getIndicator }} / {{ fileMatch.getType }})">
+    <failure>
+{{ fileMatch.getLine }} {{ fileMatches.getPath|getLineFromFile(fileMatch.getLine)|raw|escapeDollar }}
+
+{% for restFile in fileMatch.getRestFiles %}
+- {{ restFile|getChangeTitle }}: {{ restFile|getOnlineDocument }}
+{% endfor %}
+    </failure>
+    </testcase>
+{% endfor %}
+</testsuite>
+{% endfor %}
+</testsuites>
+
