@@ -219,7 +219,11 @@ EOT
             if ($dir === 'ext') {
                 return true;
             }
-            $path = \dirname($path);
+            $newPath = \dirname($path);
+            if ($newPath === $path) {
+                break;
+            }
+            $path = $newPath;
         }
         return false;
     }
