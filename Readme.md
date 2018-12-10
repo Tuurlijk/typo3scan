@@ -42,15 +42,30 @@ By default the scanner scans for breaking changes and deprecations in the most r
 - long option: `--target`
 - short option: `-t`
 - values: `7`, `8` and `9`
+- default: `9`
 ```bash
 php ./typo3scan.phar scan --target 8 ~/tmp/source
 ```
+
+### Show only certain types of changes
+You can filter out specific change types (breaking, deprecation, feature, important)
+- long option: `--only`
+- short option: `-o`
+- values: `breaking`, `deprecation`, `feature`, `important`
+- default: `breaking,deprecation,feature,important`
+```bash
+php ./typo3scan.phar scan --only breaking ~/tmp/source
+
+php ./typo3scan.phar scan --only breaking,deprecation ~/tmp/source
+```
+
 
 ### Change output format
 You can specify a different output format.
 - long option: `--format`
 - short option: `-f`
 - values: `html`, `junit`, `markdown`, `plain`
+- default: `plain`
 ```bash
 php ./typo3scan.phar scan --format markdown ~/tmp/source
 ```
