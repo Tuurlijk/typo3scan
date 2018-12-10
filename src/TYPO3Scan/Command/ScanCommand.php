@@ -176,7 +176,9 @@ EOT
                     $filteredFileMatches->append($fileMatch);
                 }
             }
-            $filteredDirectoryMatches->append($filteredFileMatches);
+            if (count($filteredFileMatches)) {
+                $filteredDirectoryMatches->append($filteredFileMatches);
+            }
         }
 
         return $filteredDirectoryMatches;
