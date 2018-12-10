@@ -150,7 +150,7 @@
                 <summary data-name="Open" class="matchRow {{ class }}">
                     {{ fileMatch.getLine }}: {{ fileMatch.getMessage|raw }}
                 </summary>
-                <pre>{{ fileMatches.getPath|getLineFromFile(fileMatch.getLine)|raw }}</pre>
+                <pre>{{ fileMatches.getPath|getLinesFromFile(fileMatch.getLine)|raw }}</pre>
 
                 <ul>
                     {% for restFile in fileMatch.getRestFiles %}

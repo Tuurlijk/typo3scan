@@ -134,6 +134,7 @@ EOT
         $twig->addFilter($this->getChangeTitle());
         $twig->addFilter($this->getEscapeDollarFilter());
         $twig->addFilter($this->getLineFromFileFilter());
+        $twig->addFilter($this->getLinesFromFileFilter());
         $twig->addFilter($this->getFilenameFilter());
         $twig->addFilter($this->getOnlineDocumentFilter());
 
@@ -193,6 +194,18 @@ EOT
     {
         return new \Twig_Filter('getLineFromFile', function ($fileName, $lineNumber) {
             return $this->getLineFromFile($fileName, $lineNumber);
+        });
+    }
+
+    /**
+     * TWIG filter to get lines from file
+     *
+     * @return \Twig_Filter
+     */
+    protected function getLinesFromFileFilter(): \Twig_Filter
+    {
+        return new \Twig_Filter('getLinesFromFile', function ($fileName, $lineNumber, $before = 2, $after = 2) {
+            return $this->getLinesFromFile($fileName, $lineNumber, $before, $after);
         });
     }
 
@@ -260,6 +273,36 @@ EOT
             return trim($file->current());
         }
         return '';
+    }
+
+    /**
+     * Return several specific lines from a file
+     *
+     * @param $fileName
+     * @param $lineNumber
+     * @param int $before
+     * @param int $after
+     * @return string
+     */
+    protected function getLinesFromFile($fileName, $lineNumber, $before = 2, $after = 2): string
+    {
+        $before = abs($before);
+        $after = abs($after);
+        $file = new \SplFileObject($fileName);
+        $lines = [];
+
+        $start = $lineNumber - 1 - $before;
+        $start = ($start < 0) ? 0 : $start;
+        $end = $start + $before + $after + 1;
+
+        for ($position = $start; $position < $end; $position++) {
+            if (!$file->eof()) {
+                $file->seek($position);
+                $lines[] = trim($file->current());
+            }
+        }
+
+        return implode(PHP_EOL, $lines);
     }
 
     /**
