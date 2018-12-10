@@ -31,6 +31,8 @@ use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\ConsoleOutputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Finder\Finder;
+use TYPO3\CMS\Scanner\Domain\Model\DirectoryMatches;
+use TYPO3\CMS\Scanner\Domain\Model\FileMatches;
 use TYPO3\CMS\Scanner\Domain\Model\Match;
 use TYPO3\CMS\Scanner\Matcher\AbstractCoreMatcher;
 
@@ -51,6 +53,7 @@ class ScanCommand extends Command
             ->setDefinition([
                 new InputArgument('path', InputArgument::REQUIRED, 'Path to scan'),
                 new InputOption('target', 't', InputOption::VALUE_OPTIONAL, 'TYPO3 version to target', '9'),
+                new InputOption('only', 'o', InputOption::VALUE_OPTIONAL, 'Only report: [breaking, deprecation, important, feature] changes', 'breaking,deprecation,important,feature'),
                 new InputOption('format', 'f', InputOption::VALUE_OPTIONAL, 'Output format', 'plain'),
                 new InputOption('templatePath', null, InputOption::VALUE_OPTIONAL, 'Path to template folder'),
             ])
@@ -68,6 +71,9 @@ Scan a folder for v7 changes and output in markdown:
 
 Scan a folder for v9 changes and output in markdown with custom template:
 <info>php typo3scan.phar scan --format markdown --templatePath ~/path/to/templates --path ~/tmp/source</info>
+
+Scan a folder for v7 changes, only show the breaking changes and output in markdown:
+<info>php typo3scan.phar scan --target 7 --only breaking --format markdown ~/tmp/source</info>
 EOT
             );
     }
@@ -114,6 +120,9 @@ EOT
 
         $scanner = new ScannerService($version);
         $directoryMatches = $scanner->scan($path);
+
+        $directoryMatches = $this->filterByType($directoryMatches, $input);
+
         $total = $directoryMatches->countAll();
 
         $executionTime = microtime(true) - $startTime;
@@ -140,6 +149,37 @@ EOT
 
         $template = $twig->load(ucfirst($format) . '.twig');
         $output->write($template->render($context));
+    }
+
+    /**
+     * Filter out only the types of changes the user wants in the report
+     *
+     * @param DirectoryMatches $directoryMatches
+     * @param InputInterface $input
+     * @return DirectoryMatches
+     */
+    protected function filterByType(DirectoryMatches $directoryMatches, InputInterface $input): DirectoryMatches
+    {
+        $only = explode(',', $input->getOption('only'));
+        $only = array_map('strtoupper', $only);
+
+        $path = $directoryMatches->getPath();
+
+        $filteredDirectoryMatches = new DirectoryMatches($path);
+
+        /** @var FileMatches $fileMatches */
+        foreach ($directoryMatches as $fileMatches) {
+            $filteredFileMatches = new FileMatches($fileMatches->getPath());
+            /** @var Match $fileMatch */
+            foreach ($fileMatches as $fileMatch) {
+                if (in_array($fileMatch->getType(), $only, true)) {
+                    $filteredFileMatches->append($fileMatch);
+                }
+            }
+            $filteredDirectoryMatches->append($filteredFileMatches);
+        }
+
+        return $filteredDirectoryMatches;
     }
 
     /**
