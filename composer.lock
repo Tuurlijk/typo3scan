@@ -576,12 +576,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Tuurlijk/scanner.git",
-                "reference": "5ab092fb9a21e7679c55ad34bc10c897f2f8dfe3"
+                "reference": "c1f0d00f72ed5609826389cc58a6c70b64abb46b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Tuurlijk/scanner/zipball/5ab092fb9a21e7679c55ad34bc10c897f2f8dfe3",
-                "reference": "5ab092fb9a21e7679c55ad34bc10c897f2f8dfe3",
+                "url": "https://api.github.com/repos/Tuurlijk/scanner/zipball/c1f0d00f72ed5609826389cc58a6c70b64abb46b",
+                "reference": "c1f0d00f72ed5609826389cc58a6c70b64abb46b",
                 "shasum": ""
             },
             "require": {
@@ -615,7 +615,7 @@
             "support": {
                 "source": "https://github.com/Tuurlijk/scanner/tree/master"
             },
-            "time": "2018-09-17T08:45:14+00:00"
+            "time": "2018-12-10T11:55:10+00:00"
         }
     ],
     "packages-dev": [
