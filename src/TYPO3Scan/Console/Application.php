@@ -32,6 +32,8 @@ use Symfony\Component\Console\Application as BaseApplication;
 class Application extends BaseApplication
 {
     /**
+     * Generator: http://www.patorjk.com/software/taag/
+     * Font: Slant
      *
      * @var string
      */

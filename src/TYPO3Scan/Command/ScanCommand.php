@@ -30,6 +30,8 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\ConsoleOutputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
+use Symfony\Component\Filesystem\Exception\IOExceptionInterface;
+use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\Finder\Finder;
 use TYPO3\CMS\Scanner\Domain\Model\DirectoryMatches;
 use TYPO3\CMS\Scanner\Domain\Model\FileMatches;
@@ -55,6 +57,7 @@ class ScanCommand extends Command
                 new InputOption('target', 't', InputOption::VALUE_OPTIONAL, 'TYPO3 version to target', '9'),
                 new InputOption('only', 'o', InputOption::VALUE_OPTIONAL, 'Only report: [breaking, deprecation, important, feature] changes', 'breaking,deprecation,important,feature'),
                 new InputOption('format', 'f', InputOption::VALUE_OPTIONAL, 'Output format', 'plain'),
+                new InputOption('reportFile', 'r', InputOption::VALUE_OPTIONAL, 'Report file', null),
                 new InputOption('templatePath', null, InputOption::VALUE_OPTIONAL, 'Path to template folder'),
             ])
             ->setHelp(<<<EOT
@@ -65,6 +68,9 @@ Scan a folder:
 
 Scan a folder for v8 changes:
 <info>php typo3scan.phar scan --target 8 ~/tmp/source</info>
+
+Scan a folder and output to report file:
+<info>php typo3scan.phar scan --target 8 --reportFile ~/tmp/report.txt ~/tmp/source</info>
 
 Scan a folder for v7 changes and output in markdown:
 <info>php typo3scan.phar scan --target 7 --format markdown ~/tmp/source</info>
@@ -100,11 +106,14 @@ EOT
         $format = $input->getOption('format') ?: 'plain';
         $path = realpath($input->getArgument('path'));
         if (!is_dir($path)) {
-            $stdErr->writeln(sprintf('Path does not exist: "%s"', $path));
+            $stdErr->writeln(sprintf('Path does not exist: "%s"', $input->getArgument('path')));
             exit;
         }
 
+        // Get target version
         $version = $input->getOption('target');
+
+        // Get template paths
         if ($input->getOption('templatePath') && is_dir(realpath($input->getOption('templatePath')))) {
             $templatePaths[] = realpath($input->getOption('templatePath'));
         }
@@ -149,7 +158,26 @@ EOT
         ];
 
         $template = $twig->load(ucfirst($format) . '.twig');
-        $output->write($template->render($context));
+
+        // Optionally output to report file instead of stdout
+        if ($input->getOption('reportFile')) {
+            $pathInfo = pathinfo($input->getOption('reportFile'));
+
+            if (!is_dir($pathInfo['dirname'])) {
+                $stdErr->writeln(sprintf('Reportfile path does not exist: "%s"', $pathInfo['dirname']));
+                exit;
+            }
+            $reportFile = $pathInfo['dirname'] . DIRECTORY_SEPARATOR . $pathInfo['basename'];
+            $filesystem = new Filesystem();
+            try {
+                $filesystem->touch($reportFile);
+            } catch (IOExceptionInterface $exception) {
+                echo 'An error occurred while creating your report at ' . $exception->getPath();
+            }
+            $filesystem->dumpFile($reportFile, $template->render($context));
+        } else {
+            $output->write($template->render($context));
+        }
     }
 
     /**

@@ -59,7 +59,6 @@ php ./typo3scan.phar scan --only breaking ~/tmp/source
 php ./typo3scan.phar scan --only breaking,deprecation ~/tmp/source
 ```
 
-
 ### Change output format
 You can specify a different output format.
 - long option: `--format`
@@ -68,6 +67,14 @@ You can specify a different output format.
 - default: `plain`
 ```bash
 php ./typo3scan.phar scan --format markdown ~/tmp/source
+```
+
+### Specify report filename
+Instead of piping the output to a file, typo3scanner can write directly to a report file
+- long option: `--reportFile`
+- short option: `-r`
+```bash
+php ./typo3scan.phar scan -r ~/tmp/report.txt ~/tmp/source
 ```
 
 ### Specify custom template folder
