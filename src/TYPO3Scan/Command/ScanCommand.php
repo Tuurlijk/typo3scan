@@ -431,7 +431,7 @@ EOT
             if ($total <= 0) {
                 $result[$type] = 0;
             } else {
-                $result[$type] = number_format(100 * $count / $total, 1) . '%';
+                $result[$type] = number_format(100 * $count / $total, 1) . '% (' . $count . ')';
             }
         }
         return $result;
