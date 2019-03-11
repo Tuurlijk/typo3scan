@@ -9,7 +9,7 @@ This tool scans a folder for any code that is broken or deprecated. It's a wrapp
 
 ## Is TYPO3 scan helping you to migrate your TYPO3 site more smoothly?
 Then please consider a sponsorship so I can make this tool even more awesome!
-- Become a patreon on [Patreon](https://www.patreon.com/michielroos)
+- Become a patron on [Patreon](https://www.patreon.com/michielroos)
 - Make a donation via [PayPal](https://paypal.me/MichielRoos)
 
 Thank you! ♥
