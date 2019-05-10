@@ -149,15 +149,15 @@
                     {% set class = 'matchImpossible' %}
                 {% endif %}
                 <summary data-name="Open" class="matchRow {{ class }}">
-                    {{ fileMatch.getLine }}: {{ fileMatch.getMessage|raw }}
+                    {{ fileMatch.getLine }}: {{ fileMatch.getMessage|escape|raw }}
                 </summary>
-                <pre>{{ fileMatches.getPath|getLinesFromFile(fileMatch.getLine)|raw }}</pre>
+                <pre>{{ fileMatches.getPath|getLinesFromFile(fileMatch.getLine)|escape|raw }}</pre>
 
                 <ul>
                     {% for restFile in fileMatch.getRestFiles %}
                         <li>
                             <a href="{{ restFile|getOnlineDocument }}"
-                               target="_blank">{{ restFile|getChangeTitle|raw }}</a>
+                               target="_blank">{{ restFile|getChangeTitle|escape|raw }}</a>
                         </li>
                     {% endfor %}
                 </ul>
