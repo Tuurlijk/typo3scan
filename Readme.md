@@ -234,5 +234,11 @@ composer install
 ./.Build/bin/phpunit tests/
 ```
 
+### Build the phar
+Make sure you have [Box](https://github.com/box-project/box2) installed.
+```bash
+box compile
+```
+
 ## Sponsors
 This project was generously sponsored by [Stichting Praktijkleren](https://www.stichtingpraktijkleren.nl/).
