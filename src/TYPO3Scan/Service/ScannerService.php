@@ -77,6 +77,7 @@ class ScannerService
                         Matcher\MethodArgumentUnusedMatcher::class,
                         Matcher\MethodCallMatcher::class,
                         Matcher\MethodCallStaticMatcher::class,
+                        Matcher\PropertyAnnotationMatcher::class,
                         Matcher\PropertyExistsStaticMatcher::class,
                         Matcher\PropertyProtectedMatcher::class,
                         Matcher\PropertyPublicMatcher::class
