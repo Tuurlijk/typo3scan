@@ -56,10 +56,11 @@ class ScannerService
         $this->setMatcherBundlePath();
 
         switch ($version) {
+            case '10':
             case '9':
                 $this->collection = new MatcherBundleCollection(
                     new \TYPO3\CMS\Scanner\Domain\Model\MatcherBundle(
-                        self::$matcherBundleBasePath . 'v9',
+                        self::$matcherBundleBasePath . 'v' . $version,
                         '',
 
                         Matcher\ArrayDimensionMatcher::class,

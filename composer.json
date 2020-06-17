@@ -23,7 +23,7 @@
     "repositories": [
         {
             "type": "vcs",
-            "url": "https://github.com/Tuurlijk/scanner"
+            "url": "https://github.com/helhum/scanner"
         }
     ],
     "autoload": {
