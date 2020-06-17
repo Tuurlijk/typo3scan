@@ -54,7 +54,7 @@ class ScanCommand extends Command
             ->setDescription('Scan a path for deprecated code')
             ->setDefinition([
                 new InputArgument('path', InputArgument::REQUIRED, 'Path to scan'),
-                new InputOption('target', 't', InputOption::VALUE_OPTIONAL, 'TYPO3 version to target', '9'),
+                new InputOption('target', 't', InputOption::VALUE_OPTIONAL, 'TYPO3 version to target', '10'),
                 new InputOption('only', 'o', InputOption::VALUE_OPTIONAL, 'Only report: [breaking, deprecation, important, feature] changes', 'breaking,deprecation,important,feature'),
                 new InputOption('format', 'f', InputOption::VALUE_OPTIONAL, 'Output format', 'plain'),
                 new InputOption('reportFile', 'r', InputOption::VALUE_OPTIONAL, 'Report file', null),

@@ -5,7 +5,7 @@ Scans code for usage of deprecated and or changed code.
 
 TYPO3 publishes [breaking changes and deprecations since version 7](https://docs.typo3.org/typo3cms/extensions/core/stable/Index.html).
 
-This tool scans a folder for any code that is broken or deprecated. It's a wrapper around the [TYPO3 scanner library](https://github.com/ohader/scanner) that has been extracted from the TYPO3 v9 core. You can scan for deprecations and breaking changes for v7, v8 and v9.
+This tool scans a folder for any code that is broken or deprecated. It's a wrapper around the [TYPO3 scanner library](https://github.com/ohader/scanner) that has been extracted from the TYPO3 v9 core. You can scan for deprecations and breaking changes for v7, v8, v9 and v10.
 
 ## Is TYPO3 scan helping you to migrate your TYPO3 site more smoothly?
 Then please consider a sponsorship so I can make this tool even more awesome!
@@ -41,8 +41,8 @@ php ./typo3scan.phar scan ~/tmp/source
 By default the scanner scans for breaking changes and deprecations in the most recent version of TYPO3. At the time of writing, this is version 9.
 - long option: `--target`
 - short option: `-t`
-- values: `7`, `8` and `9`
-- default: `9`
+- values: `7`, `8`, `9` and `10`
+- default: `10`
 ```bash
 php ./typo3scan.phar scan --target 8 ~/tmp/source
 ```
@@ -109,7 +109,7 @@ done
 
 Check multiple extensions in the folder `web/typo3conf/ext/` adjust that path if needed.
 
-The result is an artifact which contains a `Build/Report/Deprecations` where you have a file per extension and TYPO3 Version 7, 8 and 9.
+The result is an artifact which contains a `Build/Report/Deprecations` where you have a file per extension and TYPO3 Version 7, 8, 9 and 10.
 
 This way you can easily review each extension.
 
@@ -128,6 +128,7 @@ checkDeprecations:
     - for d in web/typo3conf/ext/*/ ; do (php ./typo3scan.phar scan --target 7 --format markdown $d > Build/Report/Deprecations/v7-$(basename $d).md); done
     - for d in web/typo3conf/ext/*/ ; do (php ./typo3scan.phar scan --target 8 --format markdown $d > Build/Report/Deprecations/v8-$(basename $d).md); done
     - for d in web/typo3conf/ext/*/ ; do (php ./typo3scan.phar scan --target 9 --format markdown $d > Build/Report/Deprecations/v9-$(basename $d).md); done
+    - for d in web/typo3conf/ext/*/ ; do (php ./typo3scan.phar scan --target 10 --format markdown $d > Build/Report/Deprecations/v10-$(basename $d).md); done
   artifacts:
     when: on_success
     expire_in: 7 days

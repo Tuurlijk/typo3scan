@@ -56,10 +56,39 @@ class ScannerService
         $this->setMatcherBundlePath();
 
         switch ($version) {
+            case '10':
+                $this->collection = new MatcherBundleCollection(
+                    new \TYPO3\CMS\Scanner\Domain\Model\MatcherBundle(
+                        self::$matcherBundleBasePath . $version,
+                        '',
+
+                        Matcher\ArrayDimensionMatcher::class,
+                        Matcher\ArrayGlobalMatcher::class,
+                        Matcher\ClassConstantMatcher::class,
+                        Matcher\ClassNameMatcher::class,
+                        Matcher\ConstantMatcher::class,
+                        Matcher\ConstructorArgumentMatcher::class,
+                        Matcher\FunctionCallMatcher::class,
+                        Matcher\InterfaceMethodChangedMatcher::class,
+                        Matcher\MethodAnnotationMatcher::class,
+                        Matcher\MethodArgumentDroppedMatcher::class,
+                        Matcher\MethodArgumentDroppedStaticMatcher::class,
+                        Matcher\MethodArgumentRequiredMatcher::class,
+                        Matcher\MethodArgumentRequiredStaticMatcher::class,
+                        Matcher\MethodArgumentUnusedMatcher::class,
+                        Matcher\MethodCallMatcher::class,
+                        Matcher\MethodCallStaticMatcher::class,
+                        Matcher\PropertyAnnotationMatcher::class,
+                        Matcher\PropertyExistsStaticMatcher::class,
+                        Matcher\PropertyProtectedMatcher::class,
+                        Matcher\PropertyPublicMatcher::class
+                    )
+                );
+                break;
             case '9':
                 $this->collection = new MatcherBundleCollection(
                     new \TYPO3\CMS\Scanner\Domain\Model\MatcherBundle(
-                        self::$matcherBundleBasePath . 'v9',
+                        self::$matcherBundleBasePath . $version,
                         '',
 
                         Matcher\ArrayDimensionMatcher::class,
@@ -87,7 +116,7 @@ class ScannerService
             case '8':
                 $this->collection = new MatcherBundleCollection(
                     new \TYPO3\CMS\Scanner\Domain\Model\MatcherBundle(
-                        self::$matcherBundleBasePath . 'v8',
+                        self::$matcherBundleBasePath . $version,
                         '',
 
                         Matcher\ArrayDimensionMatcher::class,
@@ -108,7 +137,7 @@ class ScannerService
             default:
                 $this->collection = new MatcherBundleCollection(
                     new \TYPO3\CMS\Scanner\Domain\Model\MatcherBundle(
-                        self::$matcherBundleBasePath . 'v7',
+                        self::$matcherBundleBasePath . $version,
                         '',
 
                         Matcher\ArrayMatcher::class,

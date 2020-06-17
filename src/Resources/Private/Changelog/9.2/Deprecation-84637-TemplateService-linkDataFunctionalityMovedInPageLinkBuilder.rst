@@ -14,6 +14,7 @@ In the process of streamlining the link generation to pages in the Frontend, the
 have been migrated into the TypoLink PageLinkBuilder class.
 
 The following methods have been marked as deprecated:
+
 * :php:`TYPO3\CMS\Core\TypoScript\TemplateService->linkData`
 * :php:`TYPO3\CMS\Core\TypoScript\TemplateService->getFromMPmap`
 * :php:`TYPO3\CMS\Core\TypoScript\TemplateService->initMPmap_create`
@@ -39,4 +40,4 @@ Migration
 Access the corresponding new methods within :php:`PageLinkBuilder` instead of the TemplateService-related
 methods, or use the existing hook to modify parameters for a URL.
 
-.. index:: FullyScanned
+.. index:: PHP-API, FullyScanned
