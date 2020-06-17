@@ -13,6 +13,7 @@ The language pack update module - formerly known as "Admin Tools" -> "Language"
 module has been moved to "Maintenance" -> "Manage language packs".
 
 PHP classes implementing the old solution have been removed:
+
 * :php:`TYPO3\CMS\Lang\Command\LanguageUpdateCommand`
 * :php:`TYPO3\CMS\Lang\Controller\LanguageController`
 * :php:`TYPO3\CMS\Lang\Domain\Model\Extension`
@@ -44,7 +45,21 @@ Using one of the mentioned classes will throw a fatal PHP error.
 Affected Installations
 ======================
 
-It is unlikely extensions used the mentioned classes, the extension scanner will find usages.
+It is unlikely extensions used the mentioned classes, the extension scanner will find usages. The only well-known
+usage of one of this classes is the signal/slot to override the base download url of language packs per extension
+and the registration did not change and should still be done like this:
+
+.. code-block:: php
+
+    /** @var \TYPO3\CMS\Extbase\SignalSlot\Dispatcher $signalSlotDispatcher */
+    $signalSlotDispatcher = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\TYPO3\CMS\Extbase\SignalSlot\Dispatcher::class);
+
+    $signalSlotDispatcher->connect(
+        'TYPO3\\CMS\\Lang\\Service\\TranslationService',
+        'postProcessMirrorUrl',
+        \Company\Extension\Slots\CustomMirror::class,
+        'postProcessMirrorUrl'
+    );
 
 
 Migration
