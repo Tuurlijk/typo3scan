@@ -38,7 +38,7 @@ php ./typo3scan.phar scan ~/tmp/source
 ```
 
 ### Scan for changes in certain TYPO3 version
-By default the scanner scans for breaking changes and deprecations in the most recent version of TYPO3. At the time of writing, this is version 9.
+By default the scanner scans for breaking changes and deprecations in the most recent version of TYPO3. At the time of writing, this is version `10`.
 - long option: `--target`
 - short option: `-t`
 - values: `7`, `8`, `9` and `10`
