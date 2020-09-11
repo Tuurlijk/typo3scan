@@ -59,6 +59,18 @@ php ./typo3scan.phar scan --only breaking ~/tmp/source
 php ./typo3scan.phar scan --only breaking,deprecation ~/tmp/source
 ```
 
+### Show only certain indicator types (strong / weak)
+You can filter out specific indicator types (strong, weak)
+- long option: `--indicator`
+- short option: `-i`
+- values: `strong`, `weak`
+- default: `strong,weak`
+```bash
+php ./typo3scan.phar scan --indicator weak ~/tmp/source
+
+php ./typo3scan.phar scan --indicator strong ~/tmp/source
+```
+
 ### Change output format
 You can specify a different output format.
 - long option: `--format`
