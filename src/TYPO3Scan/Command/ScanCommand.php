@@ -236,7 +236,7 @@ EOT
             $filteredFileMatches = new FileMatches($fileMatches->getPath());
             /** @var Match $fileMatch */
             foreach ($fileMatches as $fileMatch) {
-                if (in_array($fileMatch->getIndicator(), $indicators, true)) {
+                if (in_array(strtoupper($fileMatch->getIndicator()), $indicators, true)) {
                     $filteredFileMatches->append($fileMatch);
                 }
             }
