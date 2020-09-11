@@ -56,6 +56,7 @@ class ScanCommand extends Command
                 new InputArgument('path', InputArgument::REQUIRED, 'Path to scan'),
                 new InputOption('target', 't', InputOption::VALUE_OPTIONAL, 'TYPO3 version to target', '10'),
                 new InputOption('only', 'o', InputOption::VALUE_OPTIONAL, 'Only report: [breaking, deprecation, important, feature] changes', 'breaking,deprecation,important,feature'),
+                new InputOption('indicators', 'i', InputOption::VALUE_OPTIONAL, 'Only report: [strong, weak] matches', 'strong,weak'),
                 new InputOption('format', 'f', InputOption::VALUE_OPTIONAL, 'Output format', 'plain'),
                 new InputOption('reportFile', 'r', InputOption::VALUE_OPTIONAL, 'Report file', null),
                 new InputOption('templatePath', null, InputOption::VALUE_OPTIONAL, 'Path to template folder'),
@@ -131,6 +132,7 @@ EOT
         $directoryMatches = $scanner->scan($path);
 
         $directoryMatches = $this->filterByType($directoryMatches, $input);
+        $directoryMatches = $this->filterByIndicators($directoryMatches, $input);
 
         $total = $directoryMatches->countAll();
 
@@ -202,6 +204,39 @@ EOT
             /** @var Match $fileMatch */
             foreach ($fileMatches as $fileMatch) {
                 if (in_array($fileMatch->getType(), $only, true)) {
+                    $filteredFileMatches->append($fileMatch);
+                }
+            }
+            if (count($filteredFileMatches)) {
+                $filteredDirectoryMatches->append($filteredFileMatches);
+            }
+        }
+
+        return $filteredDirectoryMatches;
+    }
+
+    /**
+     * Filter the types of changes by indicators (confidence)
+     *
+     * @param DirectoryMatches $directoryMatches
+     * @param InputInterface $input
+     * @return DirectoryMatches
+     */
+    protected function filterByIndicators(DirectoryMatches $directoryMatches, InputInterface $input): DirectoryMatches
+    {
+        $indicators = explode(',', $input->getOption('indicators'));
+        $indicators = array_map('strtoupper', $indicators);
+
+        $path = $directoryMatches->getPath();
+
+        $filteredDirectoryMatches = new DirectoryMatches($path);
+
+        /** @var FileMatches $fileMatches */
+        foreach ($directoryMatches as $fileMatches) {
+            $filteredFileMatches = new FileMatches($fileMatches->getPath());
+            /** @var Match $fileMatch */
+            foreach ($fileMatches as $fileMatch) {
+                if (in_array($fileMatch->getIndicator(), $indicators, true)) {
                     $filteredFileMatches->append($fileMatch);
                 }
             }
