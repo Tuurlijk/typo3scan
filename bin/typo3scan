@@ -32,6 +32,6 @@ foreach ([__DIR__ . '/../../../autoload.php', __DIR__ . '/../../../../autoload.p
 
 use MichielRoos\TYPO3Scan\Console\Application;
 
-$app = new Application('TYPO3Scan', '1.6.6');
+$app = new Application('TYPO3Scan', '1.7.0');
 $app->add(new \MichielRoos\TYPO3Scan\Command\ScanCommand);
 $app->run();
