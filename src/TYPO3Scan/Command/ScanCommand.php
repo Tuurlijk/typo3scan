@@ -60,10 +60,9 @@ class ScanCommand extends Command
                 new InputOption('format', 'f', InputOption::VALUE_OPTIONAL, 'Output format', 'plain'),
                 new InputOption('reportFile', 'r', InputOption::VALUE_OPTIONAL, 'Report file', null),
                 new InputOption('templatePath', null, InputOption::VALUE_OPTIONAL, 'Path to template folder'),
-                new InputOption('failOnMatch', null, InputOption::VALUE_NONE, 'Fail if there are matches, useful for CI checks', false),
             ])
             ->setHelp(<<<EOT
-The <info>scan</info> command scans a path for deprectated code</info>.
+The <info>scan</info> command scans a path for deprecated code</info>.
 
 Scan a folder:
 <info>php typo3scan.phar scan ~/tmp/source</info>
@@ -85,9 +84,6 @@ Scan a folder for v9 changes and output in markdown with custom template:
 
 Scan a folder for v7 changes, only show the breaking changes and output in markdown:
 <info>php typo3scan.phar scan --target 7 --only breaking --format markdown ~/tmp/source</info>
-
-Scan a folder for changes, fail if there are matches (useful for CI checks):
-<info>php typo3scan.phar scan --target 10 --only breaking --fail-on-match ~/tmp/source</info>
 EOT
             );
     }
@@ -188,7 +184,7 @@ EOT
             $output->write($template->render($context));
         }
         
-        if ($total > 0 && $input->getOption('failOnMatch')) {
+        if ($total > 0) {
             return 1;
         }
         

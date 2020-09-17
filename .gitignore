@@ -5,3 +5,4 @@
 /vendor/
 typo3scan.phar
 /.idea
+!/typo3scan.phar

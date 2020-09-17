@@ -31,7 +31,10 @@
             "MichielRoos\\TYPO3Scan\\": "src/TYPO3Scan"
         }
     },
-    "bin": ["bin/typo3scan"],
+    "bin": [
+        "bin/typo3scan",
+        "typo3scan.phar"
+    ],
     "config": {
         "bin-dir": "bin",
         "optimize-autoloader": true,
