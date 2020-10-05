@@ -1,7 +1,7 @@
 # TYPO3 scanner
 Scans code for usage of deprecated and or changed code.
 
-##What about actually FIXING the broken code automatically?
+## What about actually FIXING the broken code automatically?
 TYPO3scan only _reports_ on code that needs to be fixed when migrating to a higher version of TYPO3. If you want a tool that **automatically fixes the code for you** take a look at the [TYPO3 Rector project](https://github.com/sabbelasichon/typo3-rector).
 
 ## What does it do?
