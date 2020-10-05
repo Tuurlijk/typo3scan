@@ -3,6 +3,4 @@
 /bin/php-parse
 /bin/phpunit
 /vendor/
-typo3scan.phar
 /.idea
-!/typo3scan.phar
