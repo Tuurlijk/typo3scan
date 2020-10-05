@@ -15,5 +15,10 @@
   "bin": [
     "typo3scan.phar",
     "typo3scan"
-  ]
+  ],
+  "extra": {
+    "branch-alias": {
+      "dev-master": "1.7.1-dev"
+    }
+  }
 }
