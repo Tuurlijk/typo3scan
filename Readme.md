@@ -20,14 +20,9 @@ The scanner requires **PHP 7.0** or higher to run. Why? *Because this tool was w
 If there is enough demand I can downgrade components of the scanner so it can also run on PHP 5.6. This would also mean that the TYPO3 scanner library will need to be adjusted. It is taken from the TYPO3 9 core which requires PHP 7.2 at the time of writing. This sounds like quite a hassle to me, so if you want to run the LTS version of TYPO3 . . . ugrading your PHP version is the preferred practice.
 
 ## Installation
-Download the latest version from: https://github.com/Tuurlijk/typo3scan/releases
-
-Or install using composer (skip the init step if you're installing it into an existing project):
+Install into an existing composer project:
 ```bash
-composer init
-composer config minimum-stability dev
-composer config repositories.tuurlijk-scanner vcs https://github.com/Tuurlijk/scanner
-composer require --update-no-dev  "michielroos/typo3scan:*"
+composer require "michielroos/typo3scan"
 ```
 
 ## Usage
@@ -208,50 +203,11 @@ typo3scan.phar scan ~/tmp/source/coreapi -f junit -t 7
 Looks like this:
 
 ![](./Documentation/Screenshots/Junit.png)
+
 ## Contributing
 If you want to help improve this tool to reduce the amount of false positives, improve matchers, add new matchers etc., your contributions are very welcome!
 
-This tool is a wrapper around the [TYPO3 scanner library](https://github.com/ohader/scanner) that has been extracted from the TYPO3 v9 core. I added the v7 and v8 matcher rules to [a fork of this repository](https://github.com/Tuurlijk/scanner).
-
-Most of the time you will want to change the **typo3 scanner library** or your fork of it and then run that library inside the **typo3scan** tool.
-
-### Set up the development environment
-Clone the TYPO3 scanner library repository (or your fork of the scanner repository):
-```bash
-git clone https://github.com/Tuurlijk/scanner.git
-```
-Clone this repository:
-```bash
-git clone https://github.com/Tuurlijk/typo3scan.git
-```
-Add a repository entry to your `composer.json` pointing to your locally cloned *scanner library repository*. Put this one as the first one in the list.
-```json
-        {
-            "type": "path",
-            "url": "~/Projects/TYPO3/scanner/"
-        },
-```
-Run `composer update`. Composer will now **link** the local scanner library into the **typo3scan** project. So any changes to the scanner library will be directly reflected when executing typo3scan.
-
-### Run the TYPO3scan tool
-You can execute the typo3scan tool from the `bin` directory.
-```bash
-cd ~/path/to/typo3scan
-./bin/typo3scan scan ~/tmp/testExtension
-```
-
-### Make sure all the tests run for the scanner library
-```bash
-cd ~/path/to/scanner-library
-composer install
-./.Build/bin/phpunit tests/
-```
-
-### Build the phar
-Make sure you have [Box](https://github.com/box-project/box2) installed.
-```bash
-box compile
-```
+You can contribute here: [TYPO3scan src repository](https://github.com/Tuurlijk/typo3scan-src)
 
 ## Sponsors
 This project was generously sponsored by [Stichting Praktijkleren](https://www.stichtingpraktijkleren.nl/).
