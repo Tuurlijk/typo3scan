@@ -60,14 +60,14 @@ php ./typo3scan.phar scan --only breaking,deprecation ~/tmp/source
 
 ### Show only certain indicator types (strong / weak)
 You can filter out specific indicator types (strong, weak)
-- long option: `--indicator`
+- long option: `--indicators`
 - short option: `-i`
 - values: `strong`, `weak`
 - default: `strong,weak`
 ```bash
-php ./typo3scan.phar scan --indicator weak ~/tmp/source
+php ./typo3scan.phar scan --indicators weak ~/tmp/source
 
-php ./typo3scan.phar scan --indicator strong ~/tmp/source
+php ./typo3scan.phar scan --indicators strong ~/tmp/source
 ```
 
 ### Change output format
@@ -160,8 +160,8 @@ powermail
 
 Found 26 matches in 1.09s when checking for changes and deprecations in TYPO3 7
 
-strong	weak	DEPRECATION	BREAKING	
-29.41%	70.59%	5.88%	94.12%	
+strong  weak  DEPRECATION BREAKING  
+29.41%  70.59%  5.88% 94.12%  
 
 Classes/Finisher/SendParametersFinisher.php
 Call to method "isEnabled()" (weak)
