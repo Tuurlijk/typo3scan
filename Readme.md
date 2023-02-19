@@ -9,7 +9,7 @@ TYPO3scan only _reports_ on code that needs to be fixed when migrating to a high
 
 TYPO3 publishes [breaking changes and deprecations since version 7](https://docs.typo3.org/typo3cms/extensions/core/stable/Index.html).
 
-This tool scans a folder for any code that is broken or deprecated. It's a wrapper around the [TYPO3 scanner library](https://github.com/ohader/scanner) that has been extracted from the TYPO3 v9 core. You can scan for deprecations and breaking changes for v7, v8, v9 and v10.
+This tool scans a folder for any code that is broken or deprecated. It's a wrapper around the [TYPO3 scanner library](https://github.com/ohader/scanner) that has been extracted from the TYPO3 v9 core. You can scan for deprecations and breaking changes for v7 and up.
 
 ## Is TYPO3 scan helping you to migrate your TYPO3 site more smoothly?
 Then please consider a sponsorship so I can make this tool even more awesome!
